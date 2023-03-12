@@ -1,8 +1,40 @@
 ﻿using System; // Подключенное пространство имен
 using System.Text;
 
-namespace FirstApplication.ConsoleApp // Объявление пространства имен для данного кода
+namespace Store // Объявление пространства имен для данного кода
 {
+
+    class Skis // Лыжи
+    {
+        public int SkisID { get; }
+        public int SkisLenght { get; }
+        public string SkisModel { get; }
+
+        public Skis(int skisID, int skisLenght, string SkisModel)
+        {
+            SkisID = skisID;
+            SkisLenght = skisLenght;
+            this.SkisModel = SkisModel;
+        }
+    }
+
+    class SkiPoles //лыжные палки
+    {
+        public int SkiPolesID { get; }
+        public int SkiPolesLenght { get; }
+        public string SkiPolesModel { get; }
+
+        public SkiPoles(int skipolesID, int SkiPolesLenght, string skipolesModel)
+        {
+            SkiPolesID = skipolesID;
+            this.SkiPolesLenght = SkiPolesLenght;
+            SkiPolesModel = skipolesModel;
+        }
+    }
+
+
+
+
     abstract class Delivery
     {
         public string Address;
@@ -13,6 +45,12 @@ namespace FirstApplication.ConsoleApp // Объявление пространс
         public string FirstName;
         public string LastName;
         public DateOnly DateBD;
+
+    }
+
+    class Product
+    { 
+        public string ProductName;
 
     }
     class HomeDelivery : Delivery
@@ -34,15 +72,28 @@ namespace FirstApplication.ConsoleApp // Объявление пространс
 
     class Order<TDelivery, TStruct> where TDelivery : Delivery
     {
-        public TDelivery Delivery;
+        public int Id { get; }
+
+        public TDelivery Delivery { get; }
 
         public int Number;
+
+        public Product ProductName;
+
+        public int CountProduct;
 
         public DateTime dateTime;
 
         public string Description;
 
         public ClientData[] ClientData;
+
+        public Order( int id, TDelivery delivery)
+        {
+            TDelivery Delivery = delivery;
+            Id = id;
+        }
+
 
 
 
